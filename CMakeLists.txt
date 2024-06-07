@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(learning VERSION 1.0)
+project(appglfw VERSION 1.0)
 
 # Define C++ standard
 set(CMAKE_CXX_STANDARD 11)
