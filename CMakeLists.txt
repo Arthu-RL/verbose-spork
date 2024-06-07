@@ -2,27 +2,33 @@ cmake_minimum_required(VERSION 3.10)
 project(learning VERSION 1.0)
 
 # Define C++ standard
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(GLFW_DIR "/usr/include/GLFW")
+set(LEIF_DIR "/usr/local/include/leif")
 
 # Add the executable
-add_executable(learning)
-
-# Add source files explicitly
-target_sources(learning PRIVATE
-    source/main.cpp
-    # Add other source files here
-)   
-
-# Link raylib
-target_link_libraries(learning raylib)
+add_executable(main source/main.cpp)
 
 # Include header files
-target_include_directories(learning PRIVATE headers)
+target_include_directories(main PRIVATE 
+    ${GLFW_DIR} 
+    ${LEIF_DIR}
+    "/usr/include" 
+    "/usr/local/include" 
+    "/usr/include/c++/11" 
+    "/usr/include/x86_64-linux-gnu/c++/11/bits" 
+    "/usr/include/x86_64-linux-gnu/c++/11/ext"
+)
+
+# Link libraries
+target_link_libraries(main PRIVATE GL glfw raylib)
 
 # Enable compiler warnings
-target_compile_options(learning PRIVATE -g -Wall -Wextra)
+target_compile_options(main PRIVATE -g -Wall -Wextra)
 
+# # Message to indicate successful configuration
+# message(STATUS "CMake configuration is done.")
 
 # 1. Basic Structure
 # Understand the basic structure of a CMakeLists.txt file:
