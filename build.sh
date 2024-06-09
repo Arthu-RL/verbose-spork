@@ -4,7 +4,7 @@
 mkdir -p bin
 cd bin
 cmake ..
-make
+make --jobs=$(nproc --all)
 cmake --install .
 
 echo ''

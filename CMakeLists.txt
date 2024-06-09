@@ -1,19 +1,21 @@
 cmake_minimum_required(VERSION 3.10)
-project(appglfw VERSION 1.0)
+project(appray VERSION 1.0)
 
 # Define C++ standard
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(GLFW_DIR "/usr/include/GLFW")
-set(LEIF_DIR "/usr/local/include/leif")
+
+# Variables and library paths
+# set(GLFW_DIR "/usr/include/GLFW")
+# set(LEIF_DIR "/usr/local/include/leif")
+set(LIBS "/usr/local/lib")
 
 # Add the executable
 add_executable(main source/main.cpp)
 
-# Include header files
+# Include directories
 target_include_directories(main PRIVATE 
-    ${GLFW_DIR} 
-    ${LEIF_DIR}
+    ${LIBS}
     "/usr/include" 
     "/usr/local/include" 
     "/usr/include/c++/11" 
@@ -22,7 +24,7 @@ target_include_directories(main PRIVATE
 )
 
 # Link libraries
-target_link_libraries(main PRIVATE GL glfw raylib)
+target_link_libraries(main PRIVATE raylib)
 
 # Enable compiler warnings
 target_compile_options(main PRIVATE -g -Wall -Wextra)
