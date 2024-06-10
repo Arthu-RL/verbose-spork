@@ -1,8 +1,10 @@
 #include <iostream>
 #include <raylib.h>
 
-#include "..\printcpp\MyString\MyString.h"
-#include "..\printcpp\Print.h"
+#include "../printcpp/MyString/MyString.h"
+#include "../printcpp/Print.h"
+
+static Print *p;
 
 static int width = 1280, height = 720;
 
@@ -10,16 +12,21 @@ int main() {
     InitWindow(width, height, "Tasker");
 
     if (!IsWindowReady()) {
-        // log
+        p->ok("Window opened!");
         return 1;
     }
         
     while (!WindowShouldClose()) {
-
+        ClearBackground(DARKGRAY);
+        
+        BeginDrawing();
+        EndDrawing();
     }
 
     CloseWindow();
     
+    delete p;
+
     return 0;
 }
 
