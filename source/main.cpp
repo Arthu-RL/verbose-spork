@@ -1,8 +1,9 @@
 #include <iostream>
 #include <raylib.h>
 
-static int width = 1280, height = 720;
+#include "Print.h"
 
+static int width = 1280, height = 720;
 
 int main() {
     InitWindow(width, height, "Tasker");
@@ -20,3 +21,6 @@ int main() {
     
     return 0;
 }
+
+// Windows test
+// g++ -g -Wall -Wextra -o .\bin\main .\source\main.cpp -I.\libs\raylib\include -L.\libs\raylib\lib -lraylib -lopengl32 -lgdi32 -lwinmm
