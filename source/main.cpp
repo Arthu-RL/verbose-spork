@@ -1,8 +1,8 @@
 #include <iostream>
 #include <raylib.h>
 
-#include ".\MyString\MyString.h"
-#include ".\printcpp\Print.h"
+#include "..\printcpp\MyString\MyString.h"
+#include "..\printcpp\Print.h"
 
 static int width = 1280, height = 720;
 
