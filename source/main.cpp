@@ -32,4 +32,4 @@ int main() {
 
 // Windows test
 // g++ -Wall -Wextra -c -o ./obj/MyString.o ./printcpp/MyString/MyString.cpp
-// g++ -g -Wall -Wextra -o ./bin/main ./source/main.cpp ./obj/MyString.o -I..\vcpkg\installed\x64-windows\includee -I./printcpp -L..\vcpkg\installed\x64-windows\lib -lraylib -lopengl32 -lgdi32 -lwinmm
+// g++ -g -Wall -Wextra -o ./bin/main ./source/main.cpp ./obj/MyString.o -I./printcpp -I./raylib-static/include -L./raylib-static/lib -lraylib -lopengl32 -lgdi32 -lwinmm

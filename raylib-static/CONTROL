@@ -1,0 +1,14 @@
+Package: raylib
+Version: 5.0
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x64-windows-static
+Multi-Arch: same
+Abi: db1690096b9966770b5a2da65266789a708e861f495fbd98105cdc65bca24029
+Description: A simple and easy-to-use library to enjoy videogames programming
+Default-Features: use-audio
+
+Package: raylib
+Feature: use-audio
+Architecture: x64-windows-static
+Multi-Arch: same
+Description: Build raylib with audio module
