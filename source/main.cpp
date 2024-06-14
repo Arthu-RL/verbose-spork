@@ -25,9 +25,11 @@ int main() {
 
     CloseWindow();
     
-    delete p;
 
-    p->debug("Successfuly closed!");
+    p->debug("Successfuly closed!\n");
+    p->print_in_color("bye", consoleColors.green);
+
+    delete p;
 
     return 0;
 }
