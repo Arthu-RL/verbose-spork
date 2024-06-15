@@ -1,33 +1,77 @@
 cmake_minimum_required(VERSION 3.10)
-project(appray VERSION 1.0)
+project(tasker VERSION 1.0)
 
 # Define C++ standard
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Variables and library paths
-# set(GLFW_DIR "/usr/include/GLFW")
-# set(LEIF_DIR "/usr/local/include/leif")
-set(LIBS "/usr/local/lib")
+if (UNIX AND NOT APPLE)
+    set(GLFW_DIR "/usr/include/GLFW")
+    set(LEIF_DIR "/usr/local/include/leif")
+    set(LIBS "/usr/local/lib")
+endif()
 
 # Add the executable
-add_executable(main source/main.cpp)
-
-# Include directories
-target_include_directories(main PRIVATE 
-    ${LIBS}
-    "/usr/include" 
-    "/usr/local/include" 
-    "/usr/include/c++/11" 
-    "/usr/include/x86_64-linux-gnu/c++/11/bits" 
-    "/usr/include/x86_64-linux-gnu/c++/11/ext"
+add_executable(${PROJECT_NAME}
+    source/main.cpp
+    printcpp/MyString/MyString.cpp
 )
 
-# Link libraries
-target_link_libraries(main PRIVATE raylib)
+# Include directories
+if (WIN32)
+    target_include_directories(${PROJECT_NAME} PRIVATE 
+        ${LIBS}
+        ${CMAKE_SOURCE_DIR}/printcpp
+        ${CMAKE_SOURCE_DIR}/printcpp/MyString
+        ${CMAKE_SOURCE_DIR}/raylib/src
+        # "/usr/include" 
+        # "/usr/local/include" 
+        # "/usr/include/c++/11" 
+        # "/usr/include/x86_64-linux-gnu/c++/11/bits" 
+        # "/usr/include/x86_64-linux-gnu/c++/11/ext"
+    )
+elseif (UNIX AND NOT APPLE)
+    target_include_directories(${PROJECT_NAME} PRIVATE 
+        ${LIBS}
+        ${CMAKE_SOURCE_DIR}/printcpp
+        ${CMAKE_SOURCE_DIR}/raylib/src
+        "/usr/include" 
+        "/usr/local/include" 
+        "/usr/include/c++/11" 
+        "/usr/include/x86_64-linux-gnu/c++/11/bits" 
+        "/usr/include/x86_64-linux-gnu/c++/11/ext"
+    )
+endif()
 
-# Enable compiler warnings
-target_compile_options(main PRIVATE -g -Wall -Wextra)
+# Link libraries
+target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
+
+# Enable compiler warnings conditionally based on the compiler
+if (MSVC)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4)
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    target_compile_options(${PROJECT_NAME} PRIVATE -g -Wall -Wextra)
+endif()
+
+# Additional configurations for Windows
+if (WIN32)
+    message(STATUS "Configuring for Windows")
+    # Add libs subdirectories
+    add_subdirectory(raylib)
+    if (MSVC)
+        target_compile_options(${PROJECT_NAME} PRIVATE /D_WIN32_WINNT=0x0601)
+    endif()
+endif()
+
+# Additional configurations for Linux
+if (UNIX AND NOT APPLE)
+    message(STATUS "Configuring for Linux")
+    # Finding libraries
+    # add_library()
+    # linking with pthread
+    target_link_libraries(${PROJECT_NAME} PRIVATE pthread)
+endif()
 
 # # Message to indicate successful configuration
 # message(STATUS "CMake configuration is done.")
