@@ -2,7 +2,11 @@
 #include <string>
 #include <vector>
 #include <chrono>
-#include <thread>
+
+#ifdef WIN32
+    #include <thread>
+#endif
+
 #include <raylib.h>
 
 #include "MyString/MyString.h"
