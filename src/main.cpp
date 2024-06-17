@@ -10,7 +10,7 @@
 
 #include <raylib.h>
 
-#include "MyString/MyString.h"
+#include "MyString.h"
 #include "Print.h"
 
 static Print *p;    
@@ -45,7 +45,3 @@ int main() {
 
     return 0;
 }
-
-// Windows test
-// g++ -Wall -Wextra -c -o ./obj/MyString.o ./printcpp/MyString/MyString.cpp
-// g++ -g -Wall -Wextra -o ./bin/main ./source/main.cpp ./obj/MyString.o -I./printcpp -I./raylib/src -L./raylib/src -lraylib -lopengl32 -lgdi32 -lwinmm

@@ -14,16 +14,16 @@ endif()
 
 # Add the executable
 add_executable(${PROJECT_NAME}
-    source/main.cpp
-    printcpp/MyString/MyString.cpp
+    src/main.cpp
+    submodules/printcpp/MyString/MyString.cpp
 )
 
 # Include directories
 if (WIN32)
     target_include_directories(${PROJECT_NAME} PRIVATE 
         ${LIBS}
-        ${CMAKE_SOURCE_DIR}/printcpp
-        ${CMAKE_SOURCE_DIR}/printcpp/MyString
+        ${CMAKE_SOURCE_DIR}/submodules/printcpp
+        ${CMAKE_SOURCE_DIR}/submodules/printcpp/MyString
         ${CMAKE_SOURCE_DIR}/raylib/src
         # "/usr/include" 
         # "/usr/local/include" 
@@ -34,7 +34,8 @@ if (WIN32)
 elseif (UNIX AND NOT APPLE)
     target_include_directories(${PROJECT_NAME} PRIVATE 
         ${LIBS}
-        ${CMAKE_SOURCE_DIR}/printcpp
+        ${CMAKE_SOURCE_DIR}/submodules/printcpp
+        ${CMAKE_SOURCE_DIR}/submodules/printcpp/MyString
         ${CMAKE_SOURCE_DIR}/raylib/src
         "/usr/include" 
         "/usr/local/include" 

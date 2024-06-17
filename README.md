@@ -17,3 +17,10 @@ bootstrap-vcpkg.bat --disableMetrics
 vcpkg integrate install
 vcpkg install raylib
 ```
+
+### Windows test
+
+```sh
+g++ -Wall -Wextra -c -o ./obj/MyString.o ./submodules/printcpp/MyString/MyString.cpp
+g++ -g -Wall -Wextra -o ./bin/main ./src/main.cpp ./obj/MyString.o -I./submodules/printcpp -I./raylib/src -L./raylib/src -lraylib -lopengl32 -lgdi32 -lwinmm
+```
