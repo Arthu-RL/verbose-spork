@@ -2,9 +2,10 @@
 #include <string>
 #include <vector>
 #include <chrono>
+#include <thread>
 
-#ifdef WIN32
-    #include <thread>
+#ifdef unix
+    #include <pthread.h>
 #endif
 
 #include <raylib.h>
@@ -13,7 +14,6 @@
 #include "Print.h"
 
 static Print *p;    
-
 static int width = 1280, height = 720;
 
 int main() {

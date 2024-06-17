@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # rm -rf bin/
-mkdir -p bin
-cd bin
+mkdir -p build
+cd build
 cmake ..
 make --jobs=$(nproc --all)
 cmake --install .
