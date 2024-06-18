@@ -1,14 +1,16 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#pragma once
+
 #include <utility>
 
 class MainWindow {
 public:
-  MainWindow();
+  MainWindow(int width, int height);
   ~MainWindow();
 
-  void init();
+  void init(const MyString windowTitle);
   std::pair<int, int> getDims();
 private:
   int _width = 0;

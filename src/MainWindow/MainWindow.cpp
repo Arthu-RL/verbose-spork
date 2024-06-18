@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include <utility>
+#include "MyString.h"
 
 #include "MainWindow.h"
 #include <stdexcept>
@@ -13,14 +14,12 @@ MainWindow::~MainWindow() {
   CloseWindow();
 }
 
-void MainWindow::init() {
-    InitWindow(_width, _height, "Tasker");
+void MainWindow::init(const MyString windowTitle) {
+    InitWindow(_width, _height, windowTitle.get_str());
 
     if (!IsWindowReady()) {
         throw std::runtime_error("Window initialization failed.");
     }
-
-    SetWindowTitle("TaskerApp");
 }
 
 std::pair<int, int> MainWindow::getDims() {
