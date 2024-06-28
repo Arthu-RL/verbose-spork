@@ -51,8 +51,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
 # Enable compiler warnings conditionally based on the compiler
 if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4)
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    target_compile_options(${PROJECT_NAME} PRIVATE -g -Wall -Wextra)
 endif()
 
 # Additional configurations for Windows
@@ -71,7 +69,8 @@ if (UNIX AND NOT APPLE)
     # Finding libraries
     # add_library()
     # linking with pthread
-    target_link_libraries(${PROJECT_NAME} PRIVATE pthread)
+    target_link_libraries(${PROJECT_NAME} PRIVATE pthread plog)
+    target_compile_options(${PROJECT_NAME} PRIVATE -g -Wall -Wextra)
 endif()
 
 # # Message to indicate successful configuration
